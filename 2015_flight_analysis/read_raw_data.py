@@ -15,34 +15,30 @@ There are three .csv files
 """
 
 import os
+import sys
 
 import pandas as pd
 
 # Define Functions
 
-def set_path(local_path):
+def set_path():
     """Set the default directory and see what is in there"""
-    os.chdir(local_path)
-    print(os.getcwd())
-    print(os.system("ls -la"))
-    return
+    os.chdir(sys.path[0])
 
 # Main Logic Follows
-LOCAL_PATH = "/home/dsci/Projects/fdp/2015_flight_analysis"
-set_path(LOCAL_PATH)
+set_path()
 
-AIRLINES_PATH = "../data/airlines.csv"
+AIRLINES_PATH = "../../data/airlines.csv"
 aldf = pd.read_csv(AIRLINES_PATH)
-aldf.head
+print(aldf.head)
 
-AIRPORTS_PATH = "../data/airports.csv"
+AIRPORTS_PATH = "../../data/airports.csv"
 apdf = pd.read_csv(AIRPORTS_PATH)
-apdf.head
+print(apdf.head)
 
-FLIGHTS_PATH = "../data/flights.csv"
-fldf = pd.read_csv(FLIGHTS_PATH, 
-                    dtype={'ORIGIN_AIRPORT': str,
-                           'DESTINATION_AIRPORT': str})
-fldf.head
+FLIGHTS_PATH = "../../data/flights.csv"
+fldf = pd.read_csv(FLIGHTS_PATH, dtype={'ORIGIN_AIRPORT': str,
+    'DESTINATION_AIRPORT': str})
+print(fldf.head)
 
 # End for now
