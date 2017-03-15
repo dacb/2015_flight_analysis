@@ -19,26 +19,27 @@ import sys
 
 import pandas as pd
 
+
 # Define Functions
 
 def set_path():
     """Set the default directory and see what is in there"""
     os.chdir(sys.path[0])
 
+
 # Main Logic Follows
 set_path()
 
 AIRLINES_PATH = "../../data/airlines.csv"
-aldf = pd.read_csv(AIRLINES_PATH)
-print(aldf.head)
+airline_df = pd.read_csv(AIRLINES_PATH)
+print(airline_df.head)
 
 AIRPORTS_PATH = "../../data/airports.csv"
-apdf = pd.read_csv(AIRPORTS_PATH)
-print(apdf.head)
+airport_df = pd.read_csv(AIRPORTS_PATH)
+print(airport_df.head)
 
 FLIGHTS_PATH = "../../data/flights.csv"
-fldf = pd.read_csv(FLIGHTS_PATH, dtype={'ORIGIN_AIRPORT': str,
-    'DESTINATION_AIRPORT': str})
-print(fldf.head)
+flights_df = pd.read_csv(FLIGHTS_PATH, dtype={'ORIGIN_AIRPORT': str, 'DESTINATION_AIRPORT': str})
+print(flights_df.head)
 
 # End for now
