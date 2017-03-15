@@ -29,7 +29,6 @@ def set_path():
     """Set the relative path"""
     os.chdir(sys.path[0])
 
-
 set_path()
 
 # Read the data into pandas data frames
