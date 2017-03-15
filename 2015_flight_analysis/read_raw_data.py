@@ -19,27 +19,31 @@ import sys
 
 import pandas as pd
 
+# Data file paths
+AIRLINES_PATH = "../../data/airlines.csv"
+AIRPORTS_PATH = "../../data/airports.csv"
+FLIGHTS_PATH = "../../data/flights.csv"
 
-# Define Functions
 
 def set_path():
-    """Set the default directory and see what is in there"""
+    """Set the relative path"""
     os.chdir(sys.path[0])
 
 
-# Main Logic Follows
 set_path()
 
-AIRLINES_PATH = "../../data/airlines.csv"
+# Read the data into pandas data frames
 airline_df = pd.read_csv(AIRLINES_PATH)
 print(airline_df.head)
 
-AIRPORTS_PATH = "../../data/airports.csv"
 airport_df = pd.read_csv(AIRPORTS_PATH)
 print(airport_df.head)
 
-FLIGHTS_PATH = "../../data/flights.csv"
 flights_df = pd.read_csv(FLIGHTS_PATH, dtype={'ORIGIN_AIRPORT': str, 'DESTINATION_AIRPORT': str})
 print(flights_df.head)
 
-# End for now
+# todo
+"""
+* create data frames for stories by joining frames
+* Start methods for for stories
+"""
