@@ -29,7 +29,9 @@ def set_path():
     """Set the relative path"""
     os.chdir(sys.path[0])
 
+
 set_path()
+
 
 # Read the data into pandas data frames
 airline_df = pd.read_csv(AIRLINES_PATH)
@@ -38,7 +40,8 @@ print(airline_df.head)
 airport_df = pd.read_csv(AIRPORTS_PATH)
 print(airport_df.head)
 
-flights_df = pd.read_csv(FLIGHTS_PATH, dtype={'ORIGIN_AIRPORT': str, 'DESTINATION_AIRPORT': str})
+flights_df = pd.read_csv(FLIGHTS_PATH, dtype={'ORIGIN_AIRPORT': str,
+                                              'DESTINATION_AIRPORT': str})
 print(flights_df.head)
 
 # todo
