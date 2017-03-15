@@ -9,6 +9,10 @@ Downloaded from Kaggle Project
 2015 Flight Delays and Cancellations
 
 There are three .csv files
+  15 airline codes and expansions
+  322 airport codes and expansions
+  5.8 million flights
+  
 """
 
 import os
@@ -29,12 +33,13 @@ flights_path = "../data/flights.csv"
 
 # Read the data into three different dataframes
 al_df = pd.read_csv(airline_path)
+al_df.head
+
 ap_df = pd.read_csv(airport_path)
+ap_df.head
+
 fl_df = pd.read_csv(flights_path, dtype= {'ORIGIN_AIRPORT': str,
                                           'DESTINATION_AIRPORT': str})
-
-al_df.head
-ap_df.head
 fl_df.head
 
 # End for now
