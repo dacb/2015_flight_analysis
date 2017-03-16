@@ -40,7 +40,9 @@ def main():
     # Calculate
     flight_delay_results = fd.compute_flight_delays(airline_df, airport_df, flights_df)
     flight_times_results = ft.compute_flight_times(airline_df, airport_df, flights_df)
-    location_delays_results = ld.compute_location_delays(airline_df, airport_df, flights_df)
+    location_delays_results = ld.compute_location_delays(airport_df, flights_df)
+
+    print(location_delays_results.head(10))
     return 0
 
 
