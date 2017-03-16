@@ -15,7 +15,10 @@ There are three .csv files
   5.8M flights and characteristics
 """
 
-import flightanalysis2015 as fa
+from flightanalysis2015 import readrawdata as rd
+from flightanalysis2015 import flightdelays as fd
+from flightanalysis2015 import flighttimes as ft
+from flightanalysis2015 import locationdelays as ld
 
 
 def main():
@@ -24,9 +27,9 @@ def main():
     rd.set_path()
 
     # Data file paths
-    airline_path = "../../data/airlines.csv"
-    airports_path = "../../data/airports.csv"
-    flights_path = "../../data/flights.csv"
+    airline_path = "../data/airlines.csv"
+    airports_path = "../data/airports.csv"
+    flights_path = "../data/flights.csv"
 
     # Get pandas data frames for the data sets
     airline_df = rd.get_data_frame(airline_path, )
