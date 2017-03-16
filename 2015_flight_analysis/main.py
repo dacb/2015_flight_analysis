@@ -17,7 +17,7 @@ There are three .csv files
 
 import flight_delays as fd
 import flight_times as ft
-import  location_delays as ld
+import location_delays as ld
 import read_raw_data as rd
 
 
@@ -37,6 +37,10 @@ def main():
     params = {'ORIGIN_AIRPORT': str, 'DESTINATION_AIRPORT': str}
     flights_df = rd.get_data_frame(flights_path, params)
 
+    # Calculate
+    flight_delay_results = fd.compute_flight_delays(airline_df, airport_df, flights_df)
+    flight_times_results = ft.compute_flight_times(airline_df, airport_df, flights_df)
+    location_delays_results = ld.compute_location_delays(airline_df, airport_df, flights_df)
     return 0
 
 
