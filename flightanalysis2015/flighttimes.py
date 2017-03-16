@@ -27,13 +27,13 @@ def compute_flight_times(airline, airport, flights):
     
     # reduce rows to only three airlines (n=1,658,652)
     ftimes_df = ftimes_df[(ftimes_df['AIRLINE'] == "UA") |
-                          (ftimes_df['AIRLINE'] == "B6") |
-                          (ftimes_df['AIRLINE'] == "DL")]
+                          (ftimes_df['AIRLINE'] == "F9") |
+                          (ftimes_df['AIRLINE'] == "EV")]
 
     # reduce rows to only three destination airports (n=156,611)
-    ftimes_df = ftimes_df[(ftimes_df['DESTINATION_AIRPORT'] == "SEA") |
+    ftimes_df = ftimes_df[(ftimes_df['DESTINATION_AIRPORT'] == "IAH") |
                           (ftimes_df['DESTINATION_AIRPORT'] == "ORD") |
-                          (ftimes_df['DESTINATION_AIRPORT'] == "BOS")]
+                          (ftimes_df['DESTINATION_AIRPORT'] == "ATL")]
 
     # reduce rows to only one origin airports (n=4,210)
     ftimes_df = ftimes_df[(ftimes_df['ORIGIN_AIRPORT'] == "IAD")]
