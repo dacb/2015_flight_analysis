@@ -12,7 +12,7 @@ Downloaded from Kaggle Project
 There are three .csv files
   15 airline codes and expansions
   322 airport codes and expansions
-  5.8M fligts and characteristics
+  5.8M flights and characteristics
 """
 
 import flight_delays as fd
