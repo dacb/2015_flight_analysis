@@ -17,66 +17,65 @@
 
 """
 
-#imports
+# imports
 import pandas as pd
 
 
-airlines_data = '~/Desktop/data/airlines.csv'
-airports_data = '~/Desktop/data/airports.csv'
-flights_data = '~/Desktop/data/flights.csv'
-
-airlines_df = pd.read_csv(airlines_data)
-airports_df = pd.read_csv(airports_data)
-flights_df = pd.read_csv(flights_data, dtype= {'ORIGIN_AIRPORT': str, 'DESTINATION_AIRPORT' : str})
+def merge_inner(airlines_df, flights_df):
+    return pd.merge(left=airlines_df, right=flights_df, left_on='IATA_CODE', right_on='AIRLINE')
 
 
-merged_inner = pd.merge(left = airlines_df ,right = flights_df, left_on = 'IATA_CODE', right_on = 'AIRLINE')
-merged_inner.shape
-
-def total_flights():
-    total_flights = merged_inner.groupby(['IATA_CODE'])
-    return total_flights
-    
-def count_flights():
-    #returns the total number of flights by airline
-    count_flights = total_flights['IATA_CODE'].count()
-    return count_flights
+def total_flights(merged_inner):
+    return merged_inner.groupby(['IATA_CODE'])
 
 
+def count_flights(total_flights):
+    """returns the total number of flights by airline"""
+    return total_flights['IATA_CODE'].count()
 
-#returns the total number of cancelled flights by airline
-def cancelled_flights():
-    cancelled = total_flights['CANCELLED'].sum()
-    return cancelled
-    
-def true_flights():
+
+def cancelled_flights(total_flights):
+    """returns the total number of cancelled flights by airline"""
+    return total_flights['CANCELLED'].sum()
+
+
+def true_flights(total_flights, cancelled_flights):
     # How many flights really flew
-    Flights_Ran = total_flights() - cancelled_flights()
-    return Flights_Ran    
-    
-    
-def cancel_reason():
-    '''
-    Reason for cancellations
-    CANCELLATION_REASON' indicates with a 
-    letter the reason for the cancellation of the flight.
-    A - Carrier; B - Weather; C - National Air System; D - Security 
-    '''
-    Cancel_Reason = merged_inner.groupby(['CANCELLATION_REASON'])
-    reason_counts = Cancel_Reason['CANCELLATION_REASON'].count()
-    return reason_counts
+    return total_flights - cancelled_flights
 
-def comparison():
+
+def cancel_reason(merged_inner):
+    """
+    Reason for cancellations
+    CANCELLATION_REASON' indicates with a
+    letter the reason for the cancellation of the flight.
+    A - Carrier; B - Weather; C - National Air System; D - Security
+    """
+    cancel = merged_inner.groupby(['CANCELLATION_REASON'])
+    return cancel['CANCELLATION_REASON'].count()
+
+def comparison(merged_inner):
     # break out reasons by airline
-    cancelled_and_reason= merged_inner.groupby(['IATA_CODE','CANCELLED','CANCELLATION_REASON'])
-    cancelled_and_reason['CANCELLATION_REASON'].count()
-    return 
+    cancelled_and_reason = merged_inner.groupby(['IATA_CODE','CANCELLED','CANCELLATION_REASON'])
+    return cancelled_and_reason['CANCELLATION_REASON'].count()
+
     
-    
-    
-    
-    
-    
-    
-    
-    
+
+def compute_flight_delays(airline, flights):
+    """
+    Receives 3 data frames, and returns a data frame suitable
+    for printing
+    """
+    airline_df = airline
+    flights_df = flights
+
+    merged_inner_df = merge_inner(airline_df, flights_df)
+    total_flight_df = total_flights(merged_inner_df)
+    count_flights_df = count_flights(total_flight_df)
+    cancelled_flights_df = cancelled_flights(total_flight_df)
+    true_flights_df = true_flights(total_flight_df, cancelled_flights_df)
+    cancel_reason_df = cancel_reason(merged_inner_df)
+    comparison_df = comparison(merged_inner_df)
+
+
+

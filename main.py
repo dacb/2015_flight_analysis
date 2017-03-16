@@ -16,6 +16,7 @@ There are three .csv files
 """
 import flightanalysis2015 as fa
 
+
 def main():
     """ Main program """
     # Set the relative path
@@ -33,7 +34,7 @@ def main():
     flights_df = fa.get_data_frame(flights_path, params)
 
     # Calculate
-    flight_delay_results = fa.compute_flight_delays(airline_df, airport_df, flights_df)
+    flight_delay_results = fa.compute_flight_delays(airline_df, flights_df)
     flight_times_results = fa.compute_flight_times(airline_df, airport_df, flights_df)
     location_delays_results = fa.compute_location_delays(airport_df, flights_df)
 
