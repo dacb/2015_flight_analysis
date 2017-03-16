@@ -15,6 +15,8 @@ There are three .csv files
   5.8
 """
 
+import flight_delays as fd
+import flight_times as ft
 import read_raw_data as rd
 
 
