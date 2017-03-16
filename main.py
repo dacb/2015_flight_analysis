@@ -14,17 +14,12 @@ There are three .csv files
   322 airport codes and expansions
   5.8M flights and characteristics
 """
-
-from flightanalysis2015 import readrawdata as rd
-from flightanalysis2015 import flightdelays as fd
-from flightanalysis2015 import flighttimes as ft
-from flightanalysis2015 import locationdelays as ld
-
+import flightanalysis2015 as fa
 
 def main():
     """ Main program """
     # Set the relative path
-    rd.set_path()
+    fa.set_path()
 
     # Data file paths
     airline_path = "../data/airlines.csv"
@@ -32,15 +27,15 @@ def main():
     flights_path = "../data/flights.csv"
 
     # Get pandas data frames for the data sets
-    airline_df = rd.get_data_frame(airline_path, )
-    airport_df = rd.get_data_frame(airports_path, )
+    airline_df = fa.get_data_frame(airline_path, )
+    airport_df = fa.get_data_frame(airports_path, )
     params = {'ORIGIN_AIRPORT': str, 'DESTINATION_AIRPORT': str}
-    flights_df = rd.get_data_frame(flights_path, params)
+    flights_df = fa.get_data_frame(flights_path, params)
 
     # Calculate
-    flight_delay_results = fd.compute_flight_delays(airline_df, airport_df, flights_df)
-    flight_times_results = ft.compute_flight_times(airline_df, airport_df, flights_df)
-    location_delays_results = ld.compute_location_delays(airport_df, flights_df)
+    flight_delay_results = fa.compute_flight_delays(airline_df, airport_df, flights_df)
+    flight_times_results = fa.compute_flight_times(airline_df, airport_df, flights_df)
+    location_delays_results = fa.compute_location_delays(airport_df, flights_df)
 
     print(location_delays_results.head(10))
     return 0
