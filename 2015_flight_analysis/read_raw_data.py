@@ -20,7 +20,7 @@ import sys
 import pandas as pd
 
 # Data file paths
-AIRLINES_PATH = "../../data/airlines.csv"
+AIRLINE_PATH = "../../data/airlines.csv"
 AIRPORTS_PATH = "../../data/airports.csv"
 FLIGHTS_PATH = "../../data/flights.csv"
 
@@ -30,22 +30,25 @@ def set_path():
     os.chdir(sys.path[0])
 
 
+def get_data_frame(path, params=""):
+    """Returns a pandas data frame from a CSV"""
+    if params != "":
+        return pd.read_csv(path, dtype=params)
+    return pd.read_csv(path)
+
+
 set_path()
 
 
-# Read the data into pandas data frames
-airline_df = pd.read_csv(AIRLINES_PATH)
-print(airline_df.head)
+def get_data_frame_tuple():
+    """returns tuples of data frames"""
+    # todo: don't get the data this way, just call the get_data_frame routine
+    # Read the data into pandas data frames
+    airline_df = get_data_frame(AIRLINE_PATH, )
+    airport_df = get_data_frame(AIRPORTS_PATH, )
+    params = {'ORIGIN_AIRPORT': str, 'DESTINATION_AIRPORT': str}
+    flights_df = get_data_frame(FLIGHTS_PATH, params)
+    return [airline_df, airport_df, flights_df]
 
-airport_df = pd.read_csv(AIRPORTS_PATH)
-print(airport_df.head)
 
-flights_df = pd.read_csv(FLIGHTS_PATH, dtype={'ORIGIN_AIRPORT': str,
-                                              'DESTINATION_AIRPORT': str})
-print(flights_df.head)
-
-# todo
-"""
-* create data frames for stories by joining frames
-* Start methods for for stories
-"""
+get_data_frame_tuple()
