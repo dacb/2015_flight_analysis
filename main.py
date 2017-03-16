@@ -15,10 +15,7 @@ There are three .csv files
   5.8M flights and characteristics
 """
 
-import flight_delays as fd
-import flight_times as ft
-import location_delays as ld
-import read_raw_data as rd
+import flightanalysis2015 as fa
 
 
 def main():
